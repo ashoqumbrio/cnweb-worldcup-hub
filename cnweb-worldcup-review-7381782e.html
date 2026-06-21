@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯直播 — 赛事信息与观赛指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f7f6f2;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0c1a2b 0%, #1b2e44 100%);
+            padding: 4rem 1.5rem 3.5rem;
+            text-align: center;
+            color: #eae7df;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: #c9a96e;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero h1 span {
+            color: #dbb87a;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            opacity: 0.85;
+        }
+
+        /* 正文浅色区 */
+        .content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        .section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s;
+        }
+
+        .section:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #1f2e3f;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '▍';
+            color: #c9a96e;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #226b8f;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            color: #0f4b6b;
+            border-bottom-color: #c9a96e;
+        }
+
+        /* 亮点卡片组 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .feature-item {
+            background: #f5f3ee;
+            padding: 1.2rem 1rem;
+            border-radius: 14px;
+            text-align: center;
+            border: 1px solid #e7e3d9;
+        }
+
+        .feature-item .icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-item .label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1a2c3d;
+        }
+
+        .feature-item .desc {
+            font-size: 0.85rem;
+            color: #5b5b5b;
+            margin-top: 0.2rem;
+        }
+
+        /* 使用建议 / 场景 */
+        .advice-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 0;
+        }
+
+        .advice-list li {
+            padding: 0.6rem 0 0.6rem 1.8rem;
+            position: relative;
+            border-bottom: 1px solid #efebe3;
+            font-size: 0.98rem;
+        }
+
+        .advice-list li:last-child {
+            border-bottom: none;
+        }
+
+        .advice-list li::before {
+            content: '·';
+            position: absolute;
+            left: 0.4rem;
+            color: #c9a96e;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            color: #1a2c3d;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-item .a {
+            color: #4a4a4a;
+            font-size: 0.95rem;
+            padding-left: 0.2rem;
+        }
+
+        /* 底部提示 */
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #7b7b7b;
+            border-top: 1px solid #e0dcd2;
+            padding-top: 2rem;
+        }
+
+        .footer-note a {
+            font-weight: 400;
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .hero {
+                padding: 3rem 1.2rem 2.5rem;
+            }
+
+            .content {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            .section {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>⚽ 世界赛场 · <span>直播</span> 时刻</h1>
+        <p>从小组赛到决赛，每一次触球都值得被注视。一份关于如何跟上世界杯节奏的简要说明。</p>
+    </div>
+
+    <div class="content">
+
+        <!-- 摘要 / 引入 -->
+        <div class="section">
+            <div class="section-title">为什么关注直播</div>
+            <p>世界杯之所以特别，在于它的不可预测和集体观看的共鸣。四年一次，三十二支球队，七场比赛——从第一声哨响到终场哨音，赛程紧凑而漫长。对很多球迷来说，比赛直播不仅是获取结果，更是一种参与感：你看到皮球划过草皮的轨迹，听到现场数万人的声浪，甚至是某个瞬间的争议与叹息。</p>
+            <p>因此，找到一个稳定、清晰的观看方式，就成了每届世界杯的必修课。无论你是忠实的俱乐部拥趸，还是只想凑个热闹，知道从哪里看、什么时候看，总归是第一步。</p>
+        </div>
+
+        <!-- 亮点与特点 -->
+        <div class="section">
+            <div class="section-title">赛事直播的几个特点</div>
+            <p>现代世界杯直播已经不只是「电视里放什么就看什么」。延迟、多语言解说、多视角、数据叠加——这些变化让观赛体验有了更多层次。以下是一些值得留意的部分：</p>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="icon">🕒</div>
+                    <div class="label">赛程密集</div>
+                    <div class="desc">小组赛阶段每天多场，时间跨度大</div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🌍</div>
+                    <div class="label">多语解说</div>
+                    <div class="desc">官方频道通常提供数种语言选择</div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">📱</div>
+                    <div class="label">移动适配</div>
+                    <div class="desc">手机、平板、电脑，场景灵活</div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚡</div>
+                    <div class="label">实时数据</div>
+                    <div class="desc">控球率、跑动距离、射门分布</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 使用建议 / 场景 -->
+        <div class="section">
+            <div class="section-title">几种常见的观赛场景</div>
+            <ul class="advice-list">
+                <li><strong>深夜场次</strong> — 提前调好设备音量，准备好耳机，避免打扰家人。如果比赛在凌晨，考虑提前小睡。</li>
+                <li><strong>与朋友一起看</strong> — 找一块足够大的屏幕（投影、电视或投屏），提前确认网络带宽，避免赛点时刻缓冲。</li>
+                <li><strong>通勤途中</strong> — 手机端观看时留意数据流量，部分平台提供音频直播或文字直播，流量消耗更低。</li>
+                <li><strong>多场同时进行</strong> — 小组赛最后两轮常出现同时开球，分屏或快速切换频道需要提前准备。</li>
+            </ul>
+            <p style="margin-top: 1.2rem;">如果你是初次尝试网络观看，不妨从信息聚合页面入手，了解赛程和可用信号源。例如 <a href="https://cnweb-worldcup.com">世界杯直播</a> 汇集了相关的赛事信息和观看指引，覆盖多数常见问题。</p>
+        </div>
+
+        <!-- FAQ 摘要 (简洁) -->
+        <div class="section">
+            <div class="section-title">一些常见疑问</div>
+            <div class="faq-item">
+                <div class="q">Q：画质和流畅度哪个更重要？</div>
+                <div class="a">A：因人而异。如果只看战术跑位，中等画质加上稳定无卡顿会比4K高延迟更舒服。很多平台允许手动调整清晰度。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">Q：是否需要注册或付费？</div>
+                <div class="a">A：不同渠道政策不同。部分公共广播服务提供免费观看，而一些平台可能需要订阅。建议提前查看具体条款。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">Q：错过直播怎么办？</div>
+                <div class="a">A：多数平台会保留整场回放或精华集锦，只是——知道结果再看录像，氛围终究不同。所以能看直播还是尽量看直播。</div>
+            </div>
+        </div>
+
+        <!-- 访问说明：可信但克制 -->
+        <div class="section">
+            <div class="section-title">关于信息源</div>
+            <p>互联网上关于世界杯直播的消息很杂，虚假链接、诱导跳转并不少见。选择信息来源时，留意域名是否可信、界面是否整洁、是否明确标注赛程日期和版权说明。</p>
+            <p>本站仅作为信息梳理的参考，不直接提供视频流。你可以通过 <a href="https://cnweb-worldcup.com">世界杯直播</a> 了解当前可用的观赛渠道和赛程变化。注意甄别来源，保护个人设备安全。</p>
+        </div>
+
+        <div class="footer-note">
+            <p>页面内容仅供一般性参考，具体服务请以各平台实际条款为准。<br>更新于2025年 · 世界足球日</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
