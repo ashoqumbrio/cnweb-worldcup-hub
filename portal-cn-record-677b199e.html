@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星空体育 · 再次遇见的好去处</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fbe9d7 0%, #f6d5b3 50%, #f2c79a 100%);
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        .page-wrapper {
+            max-width: 1120px;
+            width: 100%;
+        }
+        /* 主视觉卡片 */
+        .hero-card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 32px 32px;
+            padding: 2.5rem 2rem 2rem;
+            box-shadow: 0 20px 40px -12px rgba(140, 80, 30, 0.25),
+                        0 4px 18px rgba(255, 215, 175, 0.3);
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease;
+        }
+        .hero-card:hover {
+            transform: translateY(-2px);
+        }
+        .hero-tag {
+            display: inline-block;
+            background: #edb27b;
+            color: #3d2b1a;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1.25rem;
+        }
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #2b1d11;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        .hero-title span {
+            background: linear-gradient(135deg, #b5763a, #8b5a2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #4f3825;
+            max-width: 680px;
+            line-height: 1.6;
+            margin-bottom: 1.6rem;
+        }
+        .hero-desc a {
+            color: #9f672f;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #eac29b;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .hero-desc a:hover {
+            border-bottom-color: #9f672f;
+            color: #7a4d22;
+        }
+
+        /* 用途卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .info-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem 1.6rem;
+            box-shadow: 0 8px 22px -6px rgba(110, 65, 25, 0.12);
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 234, 210, 0.5);
+        }
+        .info-card:hover {
+            box-shadow: 0 12px 30px -6px rgba(130, 80, 30, 0.18);
+            border-color: #eac9ae;
+        }
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: #a76f3b;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #342214;
+            margin-bottom: 0.4rem;
+        }
+        .card-text {
+            color: #5a4030;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .card-text a {
+            color: #9f672f;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #dbb58b;
+        }
+        .card-text a:hover {
+            border-bottom-style: solid;
+            color: #794e24;
+        }
+
+        /* 适合人群 + 自然链接段落 (双栏) */
+        .double-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .double-section > * {
+            flex: 1 1 280px;
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 8px 22px -6px rgba(110, 65, 25, 0.12);
+            border: 1px solid #f6e1cf;
+        }
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b68052;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+        .section-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2b1d11;
+            margin-bottom: 0.8rem;
+        }
+        .audience-list {
+            list-style: none;
+            padding: 0;
+        }
+        .audience-list li {
+            padding: 0.35rem 0 0.35rem 1.6rem;
+            position: relative;
+            color: #4f3825;
+            line-height: 1.5;
+        }
+        .audience-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #c58f5c;
+            font-size: 0.9rem;
+        }
+        .link-paragraph p {
+            color: #4f3825;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        .link-paragraph p a {
+            color: #9f672f;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #eac29b;
+            transition: border-color 0.2s;
+        }
+        .link-paragraph p a:hover {
+            border-bottom-color: #a56d36;
+        }
+        .link-paragraph .subtle-note {
+            font-size: 0.9rem;
+            color: #7b6049;
+            background: #f6ede5;
+            padding: 0.6rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 0.2rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-preview {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 2rem 2rem;
+            box-shadow: 0 8px 22px -6px rgba(110, 65, 25, 0.12);
+            margin-bottom: 1.8rem;
+            border: 1px solid #f6e1cf;
+        }
+        .faq-preview h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2b1d11;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .faq-item {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #f0dfd0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-q {
+            font-weight: 650;
+            color: #3d2b1a;
+            margin-bottom: 0.25rem;
+        }
+        .faq-a {
+            color: #5a4030;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        .faq-a a {
+            color: #9f672f;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #dbb58b;
+        }
+        .faq-a a:hover {
+            border-bottom-style: solid;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #5f4a36;
+            font-size: 0.85rem;
+            padding: 1rem 0 0.2rem;
+            opacity: 0.8;
+            letter-spacing: 0.3px;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 600px) {
+            .hero-card {
+                padding: 2rem 1.2rem 1.5rem;
+                border-radius: 32px;
+            }
+            .hero-title {
+                font-size: 1.9rem;
+            }
+            .info-card, .double-section > * {
+                padding: 1.4rem 1.2rem;
+            }
+            .faq-preview {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 主视觉卡片：再次访问与收藏 -->
+    <div class="hero-card">
+        <div class="hero-tag">✦ 熟悉的地方 · 新的感受</div>
+        <h1 class="hero-title">把 <span>星空体育</span> 放进你常逛的角落</h1>
+        <p class="hero-desc">
+            有些好去处，你知道它就在那儿，什么时候想回去都不晚。<br>
+            给浏览器加个书签，或在笔记里留一行字，下次再来时就不用翻来翻去。<br>
+            如果你也是那种喜欢把便利留给以后的人，不妨把 
+            <a href="https://portal-cn-xksport.com">星空体育</a> 
+            放进行囊——不占地方，但随时能用。
+        </p>
+        <p class="hero-desc" style="font-size:1rem; color:#6b503b; margin-bottom:0;">
+            <span style="background:#f1ddd0; padding:0.2rem 0.8rem; border-radius:24px;">✨ 收藏即默契，常来常新</span>
+        </p>
+    </div>
+
+    <!-- 信息卡片：用途与场景 -->
+    <div class="card-grid">
+        <div class="info-card">
+            <div class="card-icon">📌</div>
+            <div class="card-title">再回来，不费力</div>
+            <div class="card-text">
+                有时候只是一时兴起，想看看最近有什么新鲜事。记下链接，下次直接打开就好。<br>
+                比如顺手把 <a href="https://portal-cn-xksport.com">星空体育</a> 放进收藏夹，需要时秒到。
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="card-icon">🧩</div>
+            <div class="card-title">日常小习惯</div>
+            <div class="card-text">
+                每次打开都像走进一间熟悉的房间，布局没变，但内容总有变化。<br>
+                适合那些喜欢在固定地方获得新灵感的人。
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="card-icon">🔄</div>
+            <div class="card-title">持续关注的理由</div>
+            <div class="card-text">
+                好东西值得反复看。不用刻意记时间，想到了就回来。<br>
+                一次收藏，之后都是直达，省去搜索的麻烦。
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="card-icon">🔖</div>
+            <div class="card-title">放在手边最稳</div>
+            <div class="card-text">
+                不管是桌面书签还是手机主屏幕，加个快捷方式 = 少一步。<br>
+                把 <a href="https://portal-cn-xksport.com">星空体育</a> 放在触手可及的地方，随时都能再来。
+            </div>
+        </div>
+    </div>
+
+    <!-- 适合人群 + 自然链接段落 -->
+    <div class="double-section">
+        <div>
+            <div class="section-label">👥 谁会喜欢这里</div>
+            <div class="section-heading">适合这样的你</div>
+            <ul class="audience-list">
+                <li>习惯用收藏夹管理网络生活的人</li>
+                <li>喜欢在固定站点获取信息和内容的长期访客</li>
+                <li>偶尔路过，但不想下次找不到入口的人</li>
+                <li>偏爱简单、干净、不打扰的浏览体验</li>
+                <li>愿意把好地方默默存下来，以后慢慢逛</li>
+            </ul>
+        </div>
+        <div class="link-paragraph">
+            <div class="section-label">🔗 一句自然的话</div>
+            <div class="section-heading">再次遇见很简单</div>
+            <p>
+                有时候上网就像散步，随意点开一个地方，觉得不错就记住。<br>
+                下次再想来，不用重新问路——直接打开书签里的 
+                <a href="https://portal-cn-xksport.com">星空体育</a> 就好。
+            </p>
+            <p>
+                收藏的动作很小，但以后每次访问都很顺畅。<br>
+                如果你愿意，也可以告诉朋友：有个地方叫星空体育，存着准没错。
+            </p>
+            <div class="subtle-note">📎 不赶路，只回头看看</div>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-preview">
+        <h3>❓ 你可能想问</h3>
+        <div class="faq-item">
+            <div class="faq-q">“为什么要把一个网站收藏起来？”</div>
+            <div class="faq-a">收藏不是必须的，但它是一种舒服的习惯。就像你记得朋友家的门牌号，下次去就不用导航了。<a href="https://portal-cn-xksport.com">星空体育</a> 也是这样一个地方。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">“需要注册或记住密码吗？”</div>
+            <div class="faq-a">不需要额外负担。你只需要一个链接，打开就能浏览。收藏之后，它就在那里等你。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">“以后内容会变吗？”</div>
+            <div class="faq-a">内容会持续更新，但地址不会变。所以收藏一次，长久有效。欢迎随时回来看看。</div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        ⋆ 收藏 · 再访 · 不迷路 ⋆
+    </div>
+</div>
+</body>
+</html>
